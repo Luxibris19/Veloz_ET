@@ -456,8 +456,8 @@ export class DbservicioService {
   actualizarRolUsuario(idUsuario:any){
     return this.database.executeSql('UPDATE usuario SET fk_idRol = 2 WHERE idUsuario = ?',[idUsuario]).then(res=>{
       this.buscarUsuario();
-      this.presentAlert3("Auto Añadido","Vehiculo añadido con exito");
-      this.mandarDatosPerfil(idUsuario);
+      this.router.navigate(['/'])
+      this.presentAlert3("Auto Añadido","Su cuenta a sido actualizada, porfavor vuelva a iniciar sesion");
     })
   }
 
