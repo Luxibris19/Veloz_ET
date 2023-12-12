@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import {MatChipsModule} from '@angular/material/chips';
 import { AlertController } from '@ionic/angular';
 import { DbservicioService } from '../services/dbservicio.service';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,9 @@ import { DbservicioService } from '../services/dbservicio.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
+
+  latitud: any;
+  longitud: any;
 
   idUsuarioRecibido: any;
   idRolRecibido: any;
@@ -38,6 +42,12 @@ export class HomePage implements OnInit{
         })
       }
     })
+  }
+
+  async obtenerUbicacion(){
+    const coordinates = await Geolocation.getCurrentPosition();
+    this.latitud = coordinates.coords.latitude;
+    this.longitud = coordinates.coords.longitude;
   }
 
   irInterfazViaje(bd:any){
@@ -71,5 +81,7 @@ export class HomePage implements OnInit{
   irPerfil(){
     this.db.mandarDatosPerfil(this.idUsuarioRecibido)
   }
+
+
 
 }

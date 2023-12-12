@@ -19,6 +19,12 @@
   <div class="botones-contenedor">
     <ion-button shape="round" (click)="irPerfil()">Mi Perfil</ion-button>
     <ion-button shape="round" (click)="crearViaje()" *ngIf="idRolRecibido == 2">Generar Viaje</ion-button>
+    <ion-button (click)="obtenerUbicacion()">Obtener Ubicacion</ion-button>
+
+    <div *ngIf="latitud && longitud">
+      <p>Latitud: {{ latitud }}</p>
+      <p>Longitud: {{ longitud }}</p>
+    </div>
   </div>
   <ion-card *ngFor="let bd of viajes">
     <ion-card-header>
